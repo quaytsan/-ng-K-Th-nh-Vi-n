@@ -27,17 +27,12 @@
             background-color: yellow;
         }
     </style>
-    <script>
-        function thanhcong(){
-            alert("Bạn đã đăng ký form thành công");       
-         }
-    </script>
 </head>
 
-<body ng-app="b3" ng-controller="ctrl1">
+<body ng-app="b3" novalidate ng-controller="ctrl1">
     <div class="container">
 
-        <form name="frm" class="col-6 mx-auto border border-primary, rounded-3">
+        <form name="frm" ng-submit="xuly();" class="col-6 mx-auto border border-primary, rounded-3">
             <h2>Đăng ký thành viên</h2>
             <div class="form-group">
                 <label>Mã sinh viên</label>
@@ -86,7 +81,7 @@
                     <option value="1">Việt Nam</option>
                     <option value="2">USA</option>
                     <option value="3">Nga</option>
-                    <option value="4">Pháp/option>
+                    <option value="4">Pháp</option>
                     <option value="5">Đức</option>
                     <option value="6">Úc</option>
                 </select>
@@ -96,7 +91,7 @@
                 <label>Ghi chú</label> <br>
                 <textarea style="float: left;" name="" id="" cols="68" rows="4"></textarea>
             <div class="from-group">
-                <button onclick="thanhcong();" style="margin-bottom: 10px;" class="btn btn-info">Đăng ký</button>
+                <button type="submit" ng-disabled="frm.$invalid" novalidate style="margin-bottom: 10px;" class="btn btn-info">Đăng ký</button>
             </div>
         </form>
     </div>
@@ -104,10 +99,14 @@
 </body>
 <script>
     app = angular.module("b3", []);
-    app.controller("ctrl1", xuly);
-    function xuly($scope) {
-        // code xử lý
-    }
+    app.controller("ctrl1", function($scope){
+    $scope.xuly = function() {
+        
+        if ($scope.frm.$valid) {
+				alert('Đăng ký Thành công');
+			}
+    };
+});
 </script>
 
 </html>
